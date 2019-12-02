@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "start": "yarn todo dev",
+    "blog": "yarn --cwd blog",
+    "meetup": "yarn --cwd meetup",
+    "todo": "yarn --cwd todo"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keystonejs/keystone.git"
+  },
+  "license": "MIT"
+}
