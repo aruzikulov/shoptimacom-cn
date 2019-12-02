@@ -1,29 +1,62 @@
-![Gatsby Logo](../.github/images/gatsby.svg)
+# Website Readme
 
-# Gatsby Example
+Welcome to the website readme! This is just a quick explanation of how the website
+is finding and compiling its contents, so that you can quickly understand what you
+can and can't do through the website.
 
-This directory is a brief example of a [Gatsby](https://www.gatsbyjs.org/) app with [Serverless Functions](https://zeit.co/docs/v2/serverless-functions/introduction) that can be deployed with ZEIT Now and zero configuration.
+## What is our website built on?
 
-## Deploy Your Own
+Our website is built on [gatsby](https://www.gatsbyjs.org/) using [mdx](https://github.com/mdx-js/mdx)
+to display pages written in markdown. To make pages display more nicely in more places, we are
+parsing `.md` files using `.mdx` instead of using the `.mdx` file extension.
 
-Deploy your own Gatsby project, along with Serverless Functions, with ZEIT Now.
+## Where we get content from.
 
-[![Deploy with ZEIT Now](https://zeit.co/button)](https://zeit.co/new/project?template=https://github.com/zeit/now-examples/tree/master/gatsby-functions)
+The first two are the `tutorials/` and the `guides/` directories within the website folder.
+These are for tutorials and guides (more on that below). This will provide most general content.
 
-_Live Example: https://gatsby-functions.now-examples.now.sh_
+The third is `.md` files from packages. Every `.md` file in a package is converted into a page
+on the website. These are used for package-specific documentation, such as API documentation. An
+important TODO for us is to partially generate API documentation.
 
-### How We Created This Example
+Finally, as this is a gatsby app, meaning that each file in `src/pages/` is transformed into a page
+for the website. Here you can use both `.md` and `.js` to define pages.
 
-To get started with Gatsby on Now, you can use the [Gatsby CLI](https://www.gatsbyjs.org/docs/gatsby-cli/) to initialize the project:
+## Where I should Add My content
 
-```shell
-$ gatsby new gatsby-site
-```
+### A brief detour into some definitions.
 
-### Deploying From Your Terminal
+We are using certain concepts to group together our content. Our documentation is either:
 
-You can deploy your new Gatsby project, along with [Serverless Functions](https://zeit.co/docs/v2/serverless-functions/introduction), with a single command from your terminal using [Now CLI](https://zeit.co/download):
+- tutorial
+  - designed for newer users
+  - step by step guides to complete a task
+  - does not explore options, nor seek to exhaustively explain options
+  - should have a working output
+  - example tutorials "getting your first keystone project running", "Build a field type"
+- guide
+  - designed for newer and intermediary users
+  - explains a topic in detail, exploring different options
+  - does not need a single end result, may suggest multiple implementations or options
+  - explains why behind choices more extensively than tutorials
+  - example guides "Best practices in constructing a field type", "Routing"
+- API
+  - designed for people looking for specific answers on implementation
+  - may make assumptions that the person reading has a basic understanding of the system
+  - Very nitty gritty documentation, mostly explanatory text, often no examples
+  - Very much a glossary or dictionary - must be easily searchable
 
-```shell
-$ now
-```
+### Back from our detour
+
+Now that we have the same term ideas:
+
+Most tutorials and guides for keystone should be written into the website, since most will use
+or reference multiple packages. These are likely to center around topics rather than packages
+as that is generally going to be the unit at which people are thinking.
+
+Since this will be true 90% of the time, even package-specific guides should be written here.
+
+API documentation should live with packages. For now, it should be in markdown next to the package.
+We want to generate this from code in some way.
+
+Decision documentation does not currently have a home.

@@ -1,56 +1,63 @@
-import React, { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet';
-import '../styles/index.css';
+/** @jsx jsx */
 
-function Index() {
-  const [date, setDate] = useState(null);
-  useEffect(() => {
-    async function getDate() {
-      const res = await fetch('/api/date');
-      const newDate = await res.text();
-      setDate(newDate);
-    }
-    getDate();
-  }, []);
-  return (
-    <main>
-      <Helmet>
-        <title>Gatsby + Node.js (TypeScript) API</title>
-      </Helmet>
-      <h1>Welcome to SHOPTIMA. Gatsby + Node.js (TypeScript) API</h1>
-      <h2>
-        Deployed with{' '}
-        <a
-          href="https://zeit.co/docs"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          ZEIT Now
-        </a>
-        !
-      </h2>
-      <p>
-        <a
-          href="https://github.com/zeit/now-examples/blob/master/gatsby-functions"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          This project
-        </a>{' '}
-        is a <a href="https://www.gatsbyjs.org/">Gatsby</a> app with two
-        directories, <code>/src</code> for static content and <code>/api</code>{' '}
-        which contains a serverless{' '}
-        <a href="https://nodejs.org/en/">Node.js (TypeScript)</a> function. See{' '}
-        <a href="/api/date">
-          <code>api/date</code> for the Date API with Node.js (TypeScript)
-        </a>
-        .
-      </p>
-      <br />
-      <h2>The date according to Node.js (TypeScript) is:</h2>
-      <p>{date ? date : 'Loading date...'}</p>
-    </main>
-  );
-}
+import React from 'react'; // eslint-disable-line no-unused-vars
+import { jsx, Global } from '@emotion/core';
+import { globalStyles } from '@arch-ui/theme';
+import { SkipNavContent } from '@reach/skip-nav';
 
-export default Index;
+import Layout from '../templates/layout';
+import { HomepageContent } from '../components/homepage/HomepageContent';
+import { VideoIntro } from '../components/homepage/VideoIntro';
+import { CONTAINER_GUTTERS, CONTAINER_WIDTH } from '../components/Container';
+import { HEADER_HEIGHT } from '../components/Header';
+import { Container, Sidebar } from '../components';
+import { mq } from '../utils/media';
+
+export default () => (
+  <Layout>
+    {({ sidebarIsVisible, sidebarOffset }) => (
+      <>
+        <Global styles={globalStyles} />
+        <Container>
+          <Sidebar isVisible={sidebarIsVisible} offsetTop={sidebarOffset} mobileOnly />
+        </Container>
+        <Hero />
+      </>
+    )}
+  </Layout>
+);
+
+const CustomContainer = props => (
+  <div
+    css={mq({
+      boxSizing: 'border-box',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      paddingLeft: CONTAINER_GUTTERS,
+      paddingRight: CONTAINER_GUTTERS,
+      width: [null, null, 992, CONTAINER_WIDTH],
+    })}
+    {...props}
+  />
+);
+
+const Hero = () => (
+  <div css={{ overflow: 'hidden' }}>
+    <SkipNavContent />
+    <CustomContainer
+      css={mq({
+        maxWidth: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: ['flex-start', 'flex-start', 'flex-start', 'center'],
+        flexDirection: ['column', 'column', 'column', 'row'],
+        fontSize: [14, 18],
+        lineHeight: 1.6,
+        minHeight: `calc(100vh - ${HEADER_HEIGHT}px)`,
+      })}
+    >
+      <HomepageContent />
+      <VideoIntro />
+    </CustomContainer>
+  </div>
+);
