@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 
 async function getPackagePlugins() {
-  const rootDir = path.resolve(__dirname, "..");
+  const rootDir = path.resolve(__dirname, ".");
   const docSections = fs.readdirSync(`${rootDir}/docs/`).filter(dir => {
     const fullDir = path.join(`${rootDir}/docs/`, dir);
     return fs.existsSync(fullDir) && fs.lstatSync(fullDir).isDirectory();
