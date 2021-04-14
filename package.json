@@ -24,7 +24,7 @@
     "formik": "^2.2.2",
     "leaflet": "^1.7.1",
     "lodash-es": "^4.17.15",
-    "mdi-react": "^7.3.0",
+    "mdi-react": "^7.5.0",
     "normalize.css": "^8.0.1",
     "qrcode": "^1.4.4",
     "raf": "^3.4.1",
