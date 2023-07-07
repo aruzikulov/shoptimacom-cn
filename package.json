@@ -91,7 +91,7 @@
     "husky": "^4.2.5",
     "lint-staged": "^10.2.9",
     "prettier": "^2.1.2",
-    "stylelint": "^13.8.0",
+    "stylelint": "^15.10.1",
     "stylelint-order": "^4.1.0"
   },
   "engines": {
